@@ -1,0 +1,7 @@
+.vscode/
+Backup/
+test/
+target/
+pom.xml.versionsBackup
+dependency-reduced-pom.xml
+archives_config.json

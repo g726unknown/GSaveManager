@@ -1,0 +1,229 @@
+/* --- 1. 导航栏按钮样式 --- */
+.nav-button {
+    -fx-background-color: transparent; 
+    -fx-background-radius: 8px;
+    -fx-background-insets: 2px;
+    -fx-cursor: hand;
+    -fx-transition: all 0.2s ease; 
+}
+.nav-button:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.06); 
+    -fx-text-fill: #24292f;
+}
+.nav-button:pressed {
+    -fx-background-color: rgba(0, 0, 0, 0.12);
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+.nav-button:selected {
+    -fx-background-color: rgba(0, 0, 0, 0.08);
+    -fx-font-weight: bold;
+}
+
+/* --- 2. 详情页时间戳列表行样式 --- */
+.timestamp-row {
+    -fx-background-color: white;
+    -fx-border-color: #e1e4e8;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 15px 20px;
+    -fx-transition: all 0.2s ease;
+}
+.timestamp-row:hover {
+    -fx-background-color: #f8f9fa; 
+    -fx-border-color: #d1d5da;
+    -fx-cursor: default;
+}
+
+/* --- 3. 控制栏危险按钮样式 --- */
+.danger-button {
+    -fx-background-color: transparent;
+    -fx-border-color: #d12420;
+    -fx-text-fill: #d12420;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-transition: all 0.2s ease;
+}
+.danger-button:hover { -fx-background-color: #ffebe9; }
+.danger-button:pressed {
+    -fx-background-color: #ffdce0;
+    -fx-scale-x: 0.96;
+    -fx-scale-y: 0.96;
+}
+
+/* --- 4. 纯文本危险按钮样式 --- */
+.danger-text-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #d12420;
+    -fx-cursor: hand;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-transition: all 0.2s ease;
+}
+.danger-text-button:hover { -fx-background-color: rgba(209, 36, 32, 0.08); }
+.danger-text-button:pressed {
+    -fx-scale-x: 0.96;
+    -fx-scale-y: 0.96;
+}
+
+/* --- 5. 实心危险按钮 --- */
+.danger-solid-button {
+    -fx-background-color: #d12420;
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-transition: all 0.2s ease;
+}
+.danger-solid-button:hover { -fx-background-color: #b31d19; }
+.danger-solid-button:pressed {
+    -fx-scale-x: 0.96;
+    -fx-scale-y: 0.96;
+}
+
+/* --- 6. 全局按钮反馈 --- */
+.button:pressed {
+    -fx-scale-x: 0.96;
+    -fx-scale-y: 0.96;
+}
+
+/* --- 7. 控制栏次要按钮 --- */
+.secondary-button {
+    -fx-background-color: #f3f4f6;
+    -fx-border-color: #d1d5da;
+    -fx-text-fill: #24292f;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-transition: all 0.2s ease;
+}
+.secondary-button:hover { -fx-background-color: #ebecf0; }
+.secondary-button:pressed {
+    -fx-background-color: #e1e4e8;
+    -fx-scale-x: 0.96;
+    -fx-scale-y: 0.96;
+}
+
+/* --- 8. 普通卡片 --- */
+.game-card {
+    -fx-background-color: white;
+    -fx-border-color: #e1e4e8;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 15px;
+    -fx-cursor: hand;
+    -fx-transition: all 0.2s ease;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 1);
+}
+.game-card:hover {
+    -fx-border-color: #b0b8c3;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.12), 12, 0, 0, 4);
+    -fx-translate-y: -3px; 
+}
+.game-card:pressed {
+    -fx-translate-y: 1px;
+    -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 4, 0, 0, 1);
+}
+
+/* --- 9. 虚线添加卡片 --- */
+.add-game-card {
+    -fx-background-color: transparent;
+    -fx-border-color: #8b949e;
+    -fx-border-style: dashed;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-transition: all 0.2s ease;
+}
+.add-game-card:hover {
+    -fx-background-color: rgba(0,0,0,0.02);
+    -fx-border-color: #57606a;
+}
+.add-game-card:pressed {
+    -fx-background-color: rgba(0,0,0,0.05);
+    -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
+}
+
+/* --- 10. 完美复刻的滑动开关 --- */
+.blue-switch .box {
+    -fx-background-color: #e1e4e8; 
+    -fx-background-radius: 15px;
+    -fx-pref-width: 44px;
+    -fx-pref-height: 24px;
+    -fx-cursor: hand;
+    -fx-transition: all 0.2s ease;
+}
+.blue-switch:selected .box {
+    -fx-background-color: #4b88f6; 
+}
+.blue-switch .mark {
+    -fx-background-color: white;
+    -fx-background-radius: 15px;
+    -fx-min-width: 20px;
+    -fx-min-height: 20px;
+    -fx-max-width: 20px;
+    -fx-max-height: 20px;
+    -fx-shape: "M0,10 A10,10 0 1,1 20,10 A10,10 0 1,1 0,10"; 
+    -fx-translate-x: -10px; 
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 3, 0, 0, 1); 
+    -fx-transition: -fx-translate-x 0.2s ease;
+}
+.blue-switch:selected .mark {
+    -fx-translate-x: 10px; 
+}
+
+/* --- 11. 现代化的右键菜单 --- */
+.context-menu {
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-border-color: #e1e4e8;
+    -fx-padding: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 3);
+}
+.context-menu .menu-item {
+    -fx-padding: 0;
+}
+.context-menu .menu-item:focused {
+    -fx-background-color: transparent;
+}
+.menu-action-box {
+    -fx-padding: 8px 25px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-transition: all 0.2s ease;
+}
+.menu-action-box:hover {
+    -fx-background-color: #f3f4f6;
+}
+.menu-danger-box {
+    -fx-padding: 8px 25px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-transition: all 0.2s ease;
+}
+.menu-danger-box:hover {
+    -fx-background-color: #ffebe9;
+}
+.back-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #0366d6;
+    -fx-font-size: 14px;
+    -fx-padding: 8px 15px;
+    -fx-cursor: hand;
+    -fx-background-radius: 5px;
+    -fx-transition: all 0.2s ease;
+}
+
+.back-button:hover {
+    -fx-background-color: #e1e4e8;
+}
+
+.back-button:pressed {
+    -fx-background-color: #d1d5da;
+    -fx-scale-x: 0.96;
+    -fx-scale-y: 0.96;
+}
