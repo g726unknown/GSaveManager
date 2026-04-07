@@ -65,11 +65,13 @@ public class MainApp extends Application {
 
         VBox sideBar = new VBox();
         sideBar.setPrefWidth(200);
-        sideBar.setStyle("-fx-background-color: " + SIDEBAR_BG_COLOR + "; -fx-border-color: " + BORDER_COLOR + "; -fx-border-width: 0 1 0 0;");
+        sideBar.setStyle("-fx-background-color: " + SIDEBAR_BG_COLOR + "; -fx-border-color: " + BORDER_COLOR
+                + "; -fx-border-width: 0 1 0 0;");
         sideBar.setPadding(new Insets(20, 10, 20, 10));
 
         Label logoLabel = new Label(" GSave Manager ");
-        logoLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: " + SIDEBAR_TEXT_COLOR + "; -fx-padding: 0 10 20 10;");
+        logoLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: " + SIDEBAR_TEXT_COLOR
+                + "; -fx-padding: 0 10 20 10;");
         logoLabel.setAlignment(Pos.CENTER);
 
         VBox navButtons = new VBox(5);
@@ -97,7 +99,7 @@ public class MainApp extends Application {
             switchView(aboutView);
             btnArchive.setSelected(false);
             btnSettings.setSelected(false);
-            btnAbout.setSelected(true); 
+            btnAbout.setSelected(true);
         });
 
         navButtons.getChildren().addAll(btnArchive, btnSettings, btnAbout);
@@ -161,7 +163,8 @@ public class MainApp extends Application {
         refreshLabel.setStyle("-fx-font-size: 14px;");
 
         Button btnRefresh = new Button("一键刷新/校验");
-        btnRefresh.setStyle("-fx-background-color: " + ADD_GAME_BTN_COLOR + "; -fx-text-fill: white; -fx-background-radius: 5px; -fx-cursor: hand;");
+        btnRefresh.setStyle("-fx-background-color: " + ADD_GAME_BTN_COLOR
+                + "; -fx-text-fill: white; -fx-background-radius: 5px; -fx-cursor: hand;");
         btnRefresh.setOnAction(e -> {
             manager.refreshArchives();
             renderGameListView();
@@ -176,11 +179,11 @@ public class MainApp extends Application {
 
         Label infoIcon = new Label(" ⓘ ");
         infoIcon.setStyle("-fx-font-weight: bold; -fx-text-fill: #0366d6; -fx-cursor: hand;");
-        
+
         Tooltip infoTooltip = new Tooltip("关闭此项后，一键刷新功能就会保存到默认分支而非最新分支。");
         infoTooltip.setShowDelay(javafx.util.Duration.millis(0));
         infoTooltip.setStyle("-fx-font-size: 12px;");
-        
+
         infoIcon.setOnMouseEntered(e -> {
             javafx.geometry.Bounds bounds = infoIcon.localToScreen(infoIcon.getBoundsInLocal());
             if (bounds != null) {
@@ -188,11 +191,11 @@ public class MainApp extends Application {
                 infoTooltip.setX(bounds.getMinX() + (bounds.getWidth() - infoTooltip.getWidth()) / 2);
             }
         });
-        
+
         infoIcon.setOnMouseExited(e -> infoTooltip.hide());
 
         CheckBox toggleSwitch = new CheckBox();
-        toggleSwitch.getStyleClass().add("blue-switch"); 
+        toggleSwitch.getStyleClass().add("blue-switch");
         toggleSwitch.setSelected(saveToLatestBranch);
         toggleSwitch.setOnAction(e -> saveToLatestBranch = toggleSwitch.isSelected());
 
@@ -202,14 +205,15 @@ public class MainApp extends Application {
         settingsView.setVisible(false);
 
         VBox aboutContent = parseReadmeToVBox();
-        
+
         aboutView = new ScrollPane(aboutContent);
         aboutView.setFitToWidth(true);
         aboutView.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         aboutView.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        aboutView.setStyle("-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: transparent;");
+        aboutView.setStyle(
+                "-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: transparent;");
         aboutView.setVisible(false);
-        
+
         applySimpleFastScroll(aboutView, aboutContent);
     }
 
@@ -232,7 +236,8 @@ public class MainApp extends Application {
             String sourcePath = "";
             for (GameArchive archive : manager.getAllArchives()) {
                 if (archive.getGameName().equals(gameName)) {
-                    if (sourcePath.isEmpty()) sourcePath = archive.getAbsRawSavePathString();
+                    if (sourcePath.isEmpty())
+                        sourcePath = archive.getAbsRawSavePathString();
                     if (latestArchive == null || archive.getTimeStamp().compareTo(latestArchive.getTimeStamp()) > 0) {
                         latestArchive = archive;
                     }
@@ -256,13 +261,15 @@ public class MainApp extends Application {
         scrollPane.setFitToWidth(true);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setStyle("-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: transparent;");
+        scrollPane.setStyle(
+                "-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: transparent;");
         applySimpleFastScroll(scrollPane, cardsPane);
 
         contentBox.getChildren().addAll(topBar, scrollPane);
 
         Button globalFabBtn = new Button("🔄 一键更新所有游戏");
-        globalFabBtn.setStyle("-fx-background-color: " + ADD_GAME_BTN_COLOR + "; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-background-radius: 25px; -fx-padding: 12 24; -fx-cursor: hand;");
+        globalFabBtn.setStyle("-fx-background-color: " + ADD_GAME_BTN_COLOR
+                + "; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-background-radius: 25px; -fx-padding: 12 24; -fx-cursor: hand;");
         DropShadow fabShadow = new DropShadow(10, Color.valueOf("#0000004d"));
         fabShadow.setOffsetY(3);
         globalFabBtn.setEffect(fabShadow);
@@ -305,10 +312,12 @@ public class MainApp extends Application {
 
         String displayBranch = latestArchive != null ? latestArchive.getSaveName() : "无存档";
         Label statusLabel = new Label(displayBranch);
-        statusLabel.setStyle("-fx-font-size: 12px; -fx-background-color: #f1f8ff; -fx-text-fill: #0366d6; -fx-background-radius: 20px; -fx-padding: 2 10 2 10;");
+        statusLabel.setStyle(
+                "-fx-font-size: 12px; -fx-background-color: #f1f8ff; -fx-text-fill: #0366d6; -fx-background-radius: 20px; -fx-padding: 2 10 2 10;");
 
         Label timeLabel = new Label("上次备份时间: \n未知");
-        timeLabel.setStyle("-fx-font-size: 11px; -fx-text-fill: #6a737d; -fx-alignment: center; -fx-text-alignment: center;");
+        timeLabel.setStyle(
+                "-fx-font-size: 11px; -fx-text-fill: #6a737d; -fx-alignment: center; -fx-text-alignment: center;");
 
         if (latestArchive != null) {
             DateTimeFormatter stampFormatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss");
@@ -377,8 +386,7 @@ public class MainApp extends Application {
                         manager.removeArchive(gameName, branch);
                     }
                     renderGameListView();
-                }
-        ));
+                }));
 
         contextMenu.getItems().addAll(accessItem, separatorItem, deleteItem);
         card.setOnContextMenuRequested(e -> contextMenu.show(card, e.getScreenX(), e.getScreenY()));
@@ -434,10 +442,11 @@ public class MainApp extends Application {
 
         HBox topBar = new HBox(15);
         topBar.setAlignment(Pos.CENTER_LEFT);
-        topBar.setPrefHeight(85); 
-        topBar.setPadding(new Insets(15, 30, 15, 20)); 
-        topBar.setStyle("-fx-background-color: " + HEADER_BG_COLOR + "; -fx-border-color: " + BORDER_COLOR + "; -fx-border-width: 0 0 1 0;");
-        
+        topBar.setPrefHeight(85);
+        topBar.setPadding(new Insets(15, 30, 15, 20));
+        topBar.setStyle("-fx-background-color: " + HEADER_BG_COLOR + "; -fx-border-color: " + BORDER_COLOR
+                + "; -fx-border-width: 0 0 1 0;");
+
         Button backBtn = new Button("← 返回");
         backBtn.getStyleClass().add("back-button");
         backBtn.setOnAction(e -> {
@@ -453,7 +462,8 @@ public class MainApp extends Application {
         for (GameArchive a : manager.getAllArchives()) {
             if (a.getGameName().equals(gameName)) {
                 branches.add(a.getSaveName());
-                if (sourceSavePath.isEmpty()) sourceSavePath = a.getAbsRawSavePathString(); 
+                if (sourceSavePath.isEmpty())
+                    sourceSavePath = a.getAbsRawSavePathString();
             }
         }
 
@@ -461,7 +471,7 @@ public class MainApp extends Application {
         branchSelector.getItems().addAll(branches);
         branchSelector.getItems().add("+ 添加分支");
         branchSelector.setValue(currentBranch);
-        branchSelector.setPrefHeight(36); 
+        branchSelector.setPrefHeight(36);
         branchSelector.setStyle("-fx-font-size: 14px;");
 
         final String finalSourcePath = sourceSavePath;
@@ -470,7 +480,8 @@ public class MainApp extends Application {
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty || item == null) {
-                    setText(null); setStyle("");
+                    setText(null);
+                    setStyle("");
                 } else {
                     setText(item);
                     if ("+ 添加分支".equals(item)) {
@@ -504,7 +515,7 @@ public class MainApp extends Application {
 
         Region topSpacer = new Region();
         HBox.setHgrow(topSpacer, Priority.ALWAYS);
-        
+
         Label branchPrefixLabel = new Label("当前分支: ");
         branchPrefixLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #57606a;");
 
@@ -513,35 +524,66 @@ public class MainApp extends Application {
 
         HBox controlBar = new HBox(15);
         controlBar.setAlignment(Pos.CENTER_LEFT);
-        controlBar.setPadding(new Insets(15, 30, 15, 30)); 
-        controlBar.setStyle("-fx-background-color: white; -fx-border-color: " + BORDER_COLOR + "; -fx-border-width: 0 0 1 0;");
+        controlBar.setPadding(new Insets(15, 30, 15, 30));
+        controlBar.setStyle(
+                "-fx-background-color: white; -fx-border-color: " + BORDER_COLOR + "; -fx-border-width: 0 0 1 0;");
 
         Label historyLabel = new Label("最大保存历史数:");
         historyLabel.setStyle("-fx-font-size: 14px;");
-        
+
         String cacheKey = gameName + "::" + currentBranch;
         String savedLimit = branchLimitCache.getOrDefault(cacheKey, "0");
-        TextField historyInput = new TextField(savedLimit); 
+        TextField historyInput = new TextField(savedLimit);
         historyInput.setPrefWidth(70);
         historyInput.setPrefHeight(34);
 
         Button applyHistoryBtn = new Button("应用限制");
         applyHistoryBtn.setPrefHeight(34);
+        historyInput.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
+            if (!isNowFocused) {
+                // 魔法防冲突：如果失去焦点是因为鼠标正悬停在“应用按钮”上，
+                // 或者通过键盘 Tab 键把焦点切到了按钮上，就不执行回滚！
+                if (applyHistoryBtn.isHover() || applyHistoryBtn.isFocused()) {
+                    return;
+                }
+                String currentCache = branchLimitCache.getOrDefault(cacheKey, "0");
+                if (!historyInput.getText().equals(currentCache)) {
+                    historyInput.setText(currentCache);
+                }
+            }
+        });
         applyHistoryBtn.setOnAction(e -> {
             try {
                 int limit = Integer.parseInt(historyInput.getText());
                 branchLimitCache.put(cacheKey, historyInput.getText());
                 manager.enforceHistoryLimit(gameName, currentBranch, limit);
                 openBranchDetailWithBranch(gameName, currentBranch);
-            } catch (NumberFormatException ex) {}
+            } catch (NumberFormatException ex) {
+            }
         });
+
+        historyInput.setOnAction(e -> applyHistoryBtn.fire());
 
         Region controlSpacer = new Region();
         HBox.setHgrow(controlSpacer, Priority.ALWAYS);
 
+        Button openBranchDirBtn = new Button("打开分支目录");
+        openBranchDirBtn.setPrefHeight(34);
+        openBranchDirBtn.getStyleClass().add("secondary-button");
+        openBranchDirBtn.setOnAction(e -> {
+            Path branchPath = Paths.get("Backup").resolve(gameName).resolve(currentBranch);
+            try {
+                if (Files.notExists(branchPath)) {
+                    Files.createDirectories(branchPath);
+                }
+            } catch (Exception ex) {
+            }
+            SomeUtils.openFolder(branchPath);
+        });
+
         Button copyBranchBtn = new Button("复制分支");
         copyBranchBtn.setPrefHeight(34);
-        copyBranchBtn.getStyleClass().add("secondary-button"); 
+        copyBranchBtn.getStyleClass().add("secondary-button");
         copyBranchBtn.setOnAction(e -> {
             TextInputDialog dialog = new TextInputDialog();
             dialog.setTitle("复制分支");
@@ -551,7 +593,7 @@ public class MainApp extends Application {
                 String trimmedName = newName.trim();
                 if (!trimmedName.isEmpty() && !branches.contains(trimmedName)) {
                     manager.createBranchCopy(gameName, currentBranch, trimmedName);
-                    openBranchDetailWithBranch(gameName, trimmedName); 
+                    openBranchDetailWithBranch(gameName, trimmedName);
                 }
             });
         });
@@ -577,46 +619,106 @@ public class MainApp extends Application {
                         renderGameListView();
                         switchView(gameListView);
                     }
-                }
-        ));
+                }));
 
-        controlBar.getChildren().addAll(historyLabel, historyInput, applyHistoryBtn, controlSpacer, copyBranchBtn, deleteBranchBtn);
+        controlBar.getChildren().addAll(historyLabel, historyInput, applyHistoryBtn, controlSpacer, openBranchDirBtn,
+                copyBranchBtn, deleteBranchBtn);
 
         VBox listContainer = new VBox(12);
-        listContainer.setPadding(new Insets(20, 30, 100, 30)); 
+        listContainer.setPadding(new Insets(20, 30, 100, 30));
 
         List<GameArchive> archives = new ArrayList<>();
         for (GameArchive a : manager.getAllArchives()) {
-            if (a.getGameName().equals(gameName) && a.getSaveName().equals(currentBranch)) archives.add(a);
+            if (a.getGameName().equals(gameName) && a.getSaveName().equals(currentBranch))
+                archives.add(a);
         }
         archives.sort((a, b) -> b.getTimeStamp().compareTo(a.getTimeStamp()));
 
         for (GameArchive archive : archives) {
-            HBox row = new HBox(15);
+            HBox row = new HBox(10);
             row.getStyleClass().add("timestamp-row");
             row.setAlignment(Pos.CENTER_LEFT);
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss");
             LocalDateTime time = LocalDateTime.parse(archive.getTimeStamp(), formatter);
-            Label timeLabel = new Label(time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
-            timeLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #24292f;");
+            String baseTimeStr = time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            String customName = archive.getCustomName();
 
+            // 1. 组合容器
+            HBox timeTagContainer = new HBox(12); // 稍微拉开一点时间戳和标签的距离
+            timeTagContainer.setAlignment(Pos.CENTER_LEFT);
+            HBox.setHgrow(timeTagContainer, Priority.ALWAYS);
+
+            // 2. 时间戳
+            Label timeLabel = new Label(baseTimeStr);
+            timeLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #24292f;");
+            timeLabel.setMinWidth(Region.USE_PREF_SIZE);
+
+            timeTagContainer.getChildren().add(timeLabel);
+
+            // 3. 标签逻辑 (弃用 Emoji，改用现代化的"胶囊"标签样式)
+            if (!customName.isEmpty()) {
+                Label tagNameLabel = new Label(customName);
+                // 使用浅蓝色底色、深蓝色文字、大圆角，做出类似 GitHub 标签的视觉效果
+                tagNameLabel.setStyle(
+                        "-fx-font-size: 12px; -fx-text-fill: #0969da; -fx-background-color: #ddf4ff; -fx-padding: 3 8; -fx-background-radius: 12px;");
+                tagNameLabel.setTextOverrun(OverrunStyle.ELLIPSIS);
+                HBox.setHgrow(tagNameLabel, Priority.ALWAYS);
+                tagNameLabel.setMinWidth(50);
+                tagNameLabel.setMaxWidth(300);
+
+                // 修复：重新启用绝对坐标计算，让提示框死死钉在标签正上方
+                Tooltip tagTooltip = new Tooltip(customName);
+                tagTooltip.setShowDelay(javafx.util.Duration.millis(0));
+                tagTooltip.setStyle("-fx-font-size: 12px;");
+
+                tagNameLabel.setOnMouseEntered(e -> {
+                    javafx.geometry.Bounds bounds = tagNameLabel.localToScreen(tagNameLabel.getBoundsInLocal());
+                    if (bounds != null) {
+                        tagTooltip.show(tagNameLabel, bounds.getMinX(), bounds.getMinY() - 30);
+                        tagTooltip.setX(bounds.getMinX() + (bounds.getWidth() - tagTooltip.getWidth()) / 2);
+                    }
+                });
+                tagNameLabel.setOnMouseExited(e -> tagTooltip.hide());
+
+                timeTagContainer.getChildren().add(tagNameLabel);
+            }
+
+            // 4. 重命名按钮 (弃用 Emoji，加上明显边框)
+            Button renameBtn = new Button("设置标签");
+            renameBtn.setMinWidth(Region.USE_PREF_SIZE);
+            renameBtn.setStyle("-fx-cursor: hand;");
+
+            renameBtn.setOnAction(e -> {
+                TextInputDialog dialog = new TextInputDialog(archive.getCustomName());
+                dialog.setTitle("设置标签");
+                dialog.setHeaderText("为该时间点 [" + baseTimeStr + "] 增加一个备注名称");
+                dialog.setContentText("请输入标签 (允许重名，清空则删除标签):");
+
+                dialog.showAndWait().ifPresent(newName -> {
+                    manager.renameSnapshot(archive.getGameName(), archive.getSaveName(), archive.getTimeStamp(),
+                            newName.trim());
+                    openBranchDetailWithBranch(gameName, currentBranch);
+                });
+            });
+
+            // 5. 分割弹簧
             Region rowSpacer = new Region();
             HBox.setHgrow(rowSpacer, Priority.ALWAYS);
 
+            // 6. 其他功能按钮
             Button restoreBtn = new Button("还原覆盖");
-            restoreBtn.setStyle("-fx-background-color: #238636; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;");
+            restoreBtn.setMinWidth(Region.USE_PREF_SIZE);
+            restoreBtn.setStyle(
+                    "-fx-background-color: #238636; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;");
             restoreBtn.setOnAction(e -> confirmAction(
                     "即将覆盖当前游戏的本地源文件",
                     "确定要将本地游戏存档回退到 [" + timeLabel.getText() + "] 吗？\n警告：当前本地未备份的最新游戏进度将被永久覆盖丢失！",
-                    () -> manager.restoreArchive(archive.getGameName(), archive.getSaveName(), archive.getTimeStamp())
-            ));
-
-            Button openDirBtn = new Button("打开文件夹");
-            openDirBtn.setStyle("-fx-cursor: hand;");
-            openDirBtn.setOnAction(e -> SomeUtils.openFolder(archive.getBackupPath()));
+                    () -> manager.restoreArchive(archive.getGameName(), archive.getSaveName(),
+                            archive.getTimeStamp())));
 
             Button createFromBtn = new Button("创建分叉");
+            createFromBtn.setMinWidth(Region.USE_PREF_SIZE);
             createFromBtn.setStyle("-fx-cursor: hand;");
             createFromBtn.setOnAction(e -> {
                 TextInputDialog dialog = new TextInputDialog();
@@ -626,13 +728,15 @@ public class MainApp extends Application {
                 dialog.showAndWait().ifPresent(newName -> {
                     String trimmedName = newName.trim();
                     if (!trimmedName.isEmpty() && !branches.contains(trimmedName)) {
-                        manager.createBranchFromSnapshot(archive.getGameName(), archive.getSaveName(), archive.getTimeStamp(), trimmedName);
+                        manager.createBranchFromSnapshot(archive.getGameName(), archive.getSaveName(),
+                                archive.getTimeStamp(), trimmedName);
                         openBranchDetailWithBranch(gameName, trimmedName);
                     }
                 });
             });
 
             Button delBtn = new Button("删除");
+            delBtn.setMinWidth(Region.USE_PREF_SIZE);
             delBtn.getStyleClass().add("danger-text-button");
             delBtn.setOnAction(e -> confirmAction(
                     "删除时间戳备份",
@@ -640,10 +744,11 @@ public class MainApp extends Application {
                     () -> {
                         manager.removeSnapshot(archive.getGameName(), archive.getSaveName(), archive.getTimeStamp());
                         openBranchDetailWithBranch(gameName, currentBranch);
-                    }
-            ));
+                    }));
 
-            row.getChildren().addAll(timeLabel, rowSpacer, restoreBtn, openDirBtn, createFromBtn, delBtn);
+            // 7. 组装行
+            row.getChildren().addAll(timeTagContainer, rowSpacer, restoreBtn, renameBtn, createFromBtn, delBtn);
+
             listContainer.getChildren().add(row);
         }
 
@@ -651,12 +756,14 @@ public class MainApp extends Application {
         scrollPane.setFitToWidth(true);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setStyle("-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: transparent;");
+        scrollPane.setStyle(
+                "-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: transparent;");
 
         applySimpleFastScroll(scrollPane, listContainer);
 
         Button fabBtn = new Button("➕ 立即备份当前存档");
-        fabBtn.setStyle("-fx-background-color: " + ADD_GAME_BTN_COLOR + "; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-background-radius: 25px; -fx-padding: 12 24; -fx-cursor: hand;");
+        fabBtn.setStyle("-fx-background-color: " + ADD_GAME_BTN_COLOR
+                + "; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-background-radius: 25px; -fx-padding: 12 24; -fx-cursor: hand;");
         DropShadow fabShadow = new DropShadow(10, Color.valueOf("#0000004d"));
         fabShadow.setOffsetY(3);
         fabBtn.setEffect(fabShadow);
@@ -665,10 +772,12 @@ public class MainApp extends Application {
             manager.updateArchive(gameName, currentBranch);
             try {
                 String limitText = historyInput.getText();
-                branchLimitCache.put(cacheKey, limitText); 
+                branchLimitCache.put(cacheKey, limitText);
                 int limit = Integer.parseInt(limitText);
-                if (limit > 0) manager.enforceHistoryLimit(gameName, currentBranch, limit);
-            } catch (NumberFormatException ex) {}
+                if (limit > 0)
+                    manager.enforceHistoryLimit(gameName, currentBranch, limit);
+            } catch (NumberFormatException ex) {
+            }
             openBranchDetailWithBranch(gameName, currentBranch);
         });
 
@@ -683,10 +792,11 @@ public class MainApp extends Application {
     }
 
     private void applySimpleFastScroll(ScrollPane scrollPane, Region content) {
-        final double SPEED_MULTIPLIER = 1.5; 
+        final double SPEED_MULTIPLIER = 1.5;
         scrollPane.addEventFilter(ScrollEvent.SCROLL, event -> {
             double deltaY = event.getDeltaY();
-            if (deltaY == 0) return;
+            if (deltaY == 0)
+                return;
             double contentHeight = content.getBoundsInLocal().getHeight();
             double viewportHeight = scrollPane.getViewportBounds().getHeight();
             double scrollableHeight = contentHeight - viewportHeight;
@@ -695,7 +805,7 @@ public class MainApp extends Application {
                 double newVvalue = currentVvalue - (deltaY * SPEED_MULTIPLIER) / scrollableHeight;
                 scrollPane.setVvalue(Math.max(0, Math.min(1, newVvalue)));
             }
-            event.consume(); 
+            event.consume();
         });
     }
 
@@ -704,7 +814,7 @@ public class MainApp extends Application {
         alert.setTitle("操作确认");
         alert.setHeaderText(header);
         alert.setContentText(content);
-        
+
         alert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 action.run();
@@ -747,20 +857,22 @@ public class MainApp extends Application {
         header.setAlignment(Pos.CENTER_LEFT);
         header.setPrefHeight(85);
         header.setPadding(new Insets(15, 30, 15, 20));
-        header.setStyle("-fx-background-color: " + HEADER_BG_COLOR + "; -fx-border-color: " + BORDER_COLOR + "; -fx-border-width: 0 0 1 0;");
+        header.setStyle("-fx-background-color: " + HEADER_BG_COLOR + "; -fx-border-color: " + BORDER_COLOR
+                + "; -fx-border-width: 0 0 1 0;");
 
         if (!titleText.isEmpty()) {
             Label titleLabel = new Label(titleText);
             titleLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #24292f;");
             header.getChildren().add(titleLabel);
         }
-        
+
         return header;
     }
 
     private Label createPageHeader(String titleText) {
         Label titleLabel = new Label(titleText);
-        titleLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #24292f; -fx-padding: 0 0 15 0;");
+        titleLabel
+                .setStyle("-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #24292f; -fx-padding: 0 0 15 0;");
         return titleLabel;
     }
 
@@ -790,42 +902,46 @@ public class MainApp extends Application {
 
             for (String line : lines) {
                 String trimmedLine = line.trim();
-                
+
                 // 识别 H1 标题
                 if (trimmedLine.startsWith("# ")) {
                     flushParagraph(container, paragraph);
                     Label l = new Label(trimmedLine.substring(2));
-                    l.setStyle("-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #24292f; -fx-padding: 0 0 10 0;");
+                    l.setStyle(
+                            "-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #24292f; -fx-padding: 0 0 10 0;");
                     container.getChildren().add(l);
-                } 
+                }
                 // 识别 H2 标题
                 else if (trimmedLine.startsWith("## ")) {
                     flushParagraph(container, paragraph);
                     Label l = new Label(trimmedLine.substring(3));
-                    l.setStyle("-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #24292f; -fx-padding: 15 0 5 0;");
+                    l.setStyle(
+                            "-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #24292f; -fx-padding: 15 0 5 0;");
                     container.getChildren().add(l);
-                } 
+                }
                 // 识别 H3 标题
                 else if (trimmedLine.startsWith("### ")) {
                     flushParagraph(container, paragraph);
                     Label l = new Label(trimmedLine.substring(4));
-                    l.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #24292f; -fx-padding: 10 0 5 0;");
+                    l.setStyle(
+                            "-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #24292f; -fx-padding: 10 0 5 0;");
                     container.getChildren().add(l);
-                } 
+                }
                 // 识别图片语法 ![alt](path)
                 else if (trimmedLine.startsWith("![") && trimmedLine.contains("](") && trimmedLine.endsWith(")")) {
                     flushParagraph(container, paragraph);
                     String altText = trimmedLine.substring(trimmedLine.indexOf("[") + 1, trimmedLine.indexOf("]"));
                     String imgPath = trimmedLine.substring(trimmedLine.indexOf("](") + 2, trimmedLine.length() - 1);
-                    
+
                     File imgFile = new File(imgPath);
                     if (imgFile.exists()) {
                         // 如果硬盘上有这张图，加载并加上好看的阴影
-                        javafx.scene.image.ImageView imageView = new javafx.scene.image.ImageView(new javafx.scene.image.Image(imgFile.toURI().toString()));
-                        imageView.setFitWidth(650); 
+                        javafx.scene.image.ImageView imageView = new javafx.scene.image.ImageView(
+                                new javafx.scene.image.Image(imgFile.toURI().toString()));
+                        imageView.setFitWidth(650);
                         imageView.setPreserveRatio(true);
                         imageView.setEffect(new DropShadow(10, Color.valueOf("#00000020")));
-                        
+
                         VBox imgBox = new VBox(imageView);
                         imgBox.setPadding(new Insets(10, 0, 10, 0));
                         container.getChildren().add(imgBox);
@@ -835,11 +951,11 @@ public class MainApp extends Application {
                         l.setStyle("-fx-text-fill: #8b949e; -fx-font-style: italic; -fx-padding: 10 0 10 0;");
                         container.getChildren().add(l);
                     }
-                } 
+                }
                 // 遇到空行，说明一个段落结束
                 else if (trimmedLine.isEmpty()) {
                     flushParagraph(container, paragraph);
-                } 
+                }
                 // 普通文本累加到段落中 (保留换行符，以便列表正常显示)
                 else {
                     paragraph.append(line).append("\n");

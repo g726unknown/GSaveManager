@@ -10,6 +10,7 @@ public class GameArchive {
     private Path savePath;
     private Path backupPath;
     private LocalDateTime timeStamp;
+    private String customName = "";
 
     public GameArchive(String gamename, String savename, String pathname) {
         this.gameName = gamename;
@@ -64,5 +65,13 @@ public class GameArchive {
 
     public String getAbsRawSavePathString() {
         return this.savePath.toAbsolutePath().toString();
+    }
+
+    public String getCustomName() {
+        return customName == null ? "" : customName;
+    }
+
+    public void setCustomName(String customName) {
+        this.customName = customName;
     }
 }

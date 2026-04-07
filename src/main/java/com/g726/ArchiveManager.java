@@ -268,4 +268,18 @@ public class ArchiveManager {
             System.out.println("成功创建分支副本: " + newBranchName);
         }
     }
+
+    public void renameSnapshot(String gameName, String saveName, String timeStamp, String newName) {
+        for (GameArchive archive : archives) {
+            if (archive.getGameName().equals(gameName) &&
+                archive.getSaveName().equals(saveName) &&
+                archive.getTimeStamp().equals(timeStamp)) {
+                
+                archive.setCustomName(newName);
+                JsonManager.saveToJson(archives);
+                System.out.println("成功为快照 [" + timeStamp + "] 设置标签: " + newName);
+                return;
+            }
+        }
+    }
 }
