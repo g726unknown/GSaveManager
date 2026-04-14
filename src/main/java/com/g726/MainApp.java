@@ -528,7 +528,7 @@ public class MainApp extends Application {
         controlBar.setStyle(
                 "-fx-background-color: white; -fx-border-color: " + BORDER_COLOR + "; -fx-border-width: 0 0 1 0;");
 
-        Label historyLabel = new Label("最大保存历史数:");
+        Label historyLabel = new Label("最大保存数量:");
         historyLabel.setStyle("-fx-font-size: 14px;");
 
         String cacheKey = gameName + "::" + currentBranch;
@@ -663,8 +663,7 @@ public class MainApp extends Application {
                 tagNameLabel.setStyle(
                         "-fx-font-size: 12px; -fx-text-fill: #0969da; -fx-background-color: #ddf4ff; -fx-padding: 3 8; -fx-background-radius: 12px;");
                 tagNameLabel.setTextOverrun(OverrunStyle.ELLIPSIS);
-                HBox.setHgrow(tagNameLabel, Priority.ALWAYS);
-                tagNameLabel.setMinWidth(50);
+                tagNameLabel.setMinWidth(0);
                 tagNameLabel.setMaxWidth(300);
 
                 // 修复：重新启用绝对坐标计算，让提示框死死钉在标签正上方
