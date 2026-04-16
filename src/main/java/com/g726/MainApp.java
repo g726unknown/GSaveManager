@@ -365,7 +365,7 @@ public class MainApp extends Application {
         HBox.setHgrow(line, Priority.ALWAYS);
         CustomMenuItem separatorItem = new CustomMenuItem(sepBox, false);
 
-        Label deleteLabel = new Label("删除游戏");
+        Label deleteLabel = new Label("删除备份");
         deleteLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #d12420;");
         HBox deleteBox = new HBox(deleteLabel);
         deleteBox.setAlignment(Pos.CENTER);
@@ -373,7 +373,7 @@ public class MainApp extends Application {
 
         CustomMenuItem deleteItem = new CustomMenuItem(deleteBox, true);
         deleteItem.setOnAction(e -> confirmAction(
-                "删除游戏",
+                "删除备份",
                 "确定要删除【" + gameName + "】的所有备份存档吗？\n注意：这只会删除备份文件",
                 () -> {
                     Set<String> branchesToDelete = new HashSet<>();
